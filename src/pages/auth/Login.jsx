@@ -36,7 +36,7 @@ const Login = () => {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            fill="#FF0066"
+            fill="#3ad59f"
             d="M20.1,-23.7C32.5,-23.3,53.5,-28.6,65.5,-23.7C77.5,-18.7,80.5,-3.3,78.9,11.7C77.2,26.7,70.9,41.3,58.7,45.3C46.5,49.2,28.5,42.5,13.2,48.6C-2.1,54.7,-14.6,73.6,-22.2,72.8C-29.9,71.9,-32.6,51.2,-33.4,36.6C-34.2,21.9,-33.2,13.3,-29.3,7.3C-25.5,1.2,-18.8,-2.1,-16.1,-7.1C-13.4,-12,-14.7,-18.5,-12.7,-23.7C-10.7,-28.8,-5.4,-32.7,-0.8,-31.5C3.8,-30.3,7.7,-24.1,20.1,-23.7Z"
             transform="translate(100 100)"
           />
@@ -49,9 +49,9 @@ const Login = () => {
               <h6 className="ml-2 font-bold">Hotel Management System</h6>
             </div>
 
-            <Divider align="center" type="dashed">
-              <b>LOGIN</b>
-            </Divider>
+            <h6 className="text-center font-extrabold my-4">
+              LOGIN TO CONTINUE
+            </h6>
 
             <LoginForm></LoginForm>
 

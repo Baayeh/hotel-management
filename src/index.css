@@ -20,6 +20,11 @@
   -webkit-text-size-adjust: 100%;
 }
 
+body {
+  font-family: "Nunito", Inter, Avenir, Helvetica, Arial, sans-serif;
+  scroll-behavior: smooth;
+}
+
 @layer components {
   #Login-section {
     @apply w-screen h-screen flex items-center justify-center bg-[url('/src/assets/images/ralph-ravi-kayden-FqqiAvJejto-unsplash.jpg')] bg-cover bg-center bg-no-repeat relative overflow-hidden;
