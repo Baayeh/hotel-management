@@ -7,6 +7,7 @@ module.exports = {
         primaryColor: "#228B22",
         primaryColorLight: "#50C878",
         primaryColorDark: "#00674b",
+        greyBaseColor: "#e9eaf3",
       },
     },
   },

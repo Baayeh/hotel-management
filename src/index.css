@@ -33,6 +33,34 @@ body {
   .form-control {
     @apply border-b border-gray-300 w-full p-2 text-sm focus:border-primaryColor focus:outline-none;
   }
+
+  .sidebar-nav {
+    @apply relative bg-primaryColor rounded-xl shadow-lg text-white p-3 min-h-screen;
+  }
+
+  .sidebar-nav .list-group .list-group-item {
+    @apply flex items-center py-[14px] cursor-pointer hover:bg-primaryColor relative;
+  }
+
+  .sidebar-nav .list-group .list-group-item.active {
+    @apply after:content-[''] after:absolute after:-left-[13px] after:top-[50%] after:bg-white after:w-2 after:h-[60%] after:-translate-y-[50%];
+  }
+
+  .sidebar-nav .list-group .list-group-item svg {
+    @apply text-2xl;
+  }
+
+  .sidebar-nav .list-group .list-group-item .nav-label {
+    @apply ml-4 text-base;
+  }
+
+  .sidebar-nav .nav-toggle-btn {
+    @apply bg-white w-6 h-6 rounded-full absolute shadow-lg top-12 -right-[10px] flex items-center justify-center;
+  }
+
+  .main .auth-section svg {
+    @apply text-xl;
+  }
 }
 
 .login-screen::after {
