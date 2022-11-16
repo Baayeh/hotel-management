@@ -1,5 +1,4 @@
 import { RiBuilding2Fill } from "react-icons/ri";
-import { Divider } from "primereact/divider";
 import { LoginForm } from "../../components";
 
 const Login = () => {

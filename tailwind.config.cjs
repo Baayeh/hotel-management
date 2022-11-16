@@ -9,6 +9,9 @@ module.exports = {
         primaryColorDark: "#00674b",
         greyBaseColor: "#e9eaf3",
       },
+      dropShadow: {
+        customShadow: "0 1.5rem 4rem rgba(22, 28, 45, 0.1)",
+      },
     },
   },
   plugins: [],

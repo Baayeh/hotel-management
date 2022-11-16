@@ -1,18 +1,30 @@
+import { useState } from "react";
 import { Sidebar } from "../../components";
 import { BiBell, BiMessageSquareDetail } from "react-icons/bi";
 import { Outlet } from "react-router-dom";
+import { RiBuilding2Fill } from "react-icons/ri";
 
 const AppWrapper = () => {
+  const [sidebarFullWidth, setSidebarFullWidth] = useState(false);
+
   return (
     <section
       id="app-wrapper"
       className="bg-greyBaseColor p-3 flex items-start gap-x-5 min-h-screen h-full"
     >
-      <Sidebar></Sidebar>
+      <Sidebar
+        sidebarFullWidth={sidebarFullWidth}
+        setSidebarFullWidth={setSidebarFullWidth}
+      ></Sidebar>
 
-      <main className="w-full main">
-        <nav className="bg-white rounded-lg py-4 px-5 w-full flex items-center justify-between">
-          <ul>sdfdf</ul>
+      <main
+        className={`main ml-auto ${sidebarFullWidth ? "w-[87%]" : "w-[94%]"}`}
+      >
+        <nav className={`top-nav ${sidebarFullWidth ? "w-[86%]" : "w-[92%]"}`}>
+          <div className="font-bold text-xl flex items-center">
+            <RiBuilding2Fill className="text-4xl mr-2 text-primaryColor"></RiBuilding2Fill>
+            Welcome to Hotel Management System
+          </div>
           <div className="auth-section flex items-center gap-x-5">
             <BiBell></BiBell>
 
@@ -22,7 +34,7 @@ const AppWrapper = () => {
               <BiMessageSquareDetail></BiMessageSquareDetail>
             </span>
 
-            <div className="auth-info flex items-center">
+            <div className="auth-info flex items-center cursor-pointer">
               <div className="mr-3 text-right">
                 <span className="font-extrabold text-sm leading-none block mb-1">
                   John Smith
@@ -36,7 +48,9 @@ const AppWrapper = () => {
           </div>
         </nav>
 
-        <Outlet></Outlet>
+        <div className="main-outlet mt-[64px]">
+          <Outlet></Outlet>
+        </div>
       </main>
     </section>
   );

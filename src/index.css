@@ -35,7 +35,7 @@ body {
   }
 
   .sidebar-nav {
-    @apply relative bg-primaryColor rounded-xl shadow-lg text-white p-3 min-h-screen;
+    @apply fixed left-3 top-3 bg-primaryColor rounded-xl shadow-lg text-white p-3 min-h-full z-20;
   }
 
   .sidebar-nav .list-group .list-group-item {
@@ -58,9 +58,25 @@ body {
     @apply bg-white w-6 h-6 rounded-full absolute shadow-lg top-12 -right-[10px] flex items-center justify-center;
   }
 
+  .top-nav {
+    @apply bg-white rounded-lg py-4 px-5 flex items-center justify-between fixed top-3 mr-4 z-10 drop-shadow-customShadow;
+  }
+
   .main .auth-section svg {
     @apply text-xl;
   }
+
+  #dashboard .card {
+    @apply bg-white rounded-lg cursor-pointer drop-shadow-customShadow;
+  }
+}
+
+#daterange .p-inputtext {
+  border: none;
+  padding: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  /* min-width: 200px; */
 }
 
 .login-screen::after {

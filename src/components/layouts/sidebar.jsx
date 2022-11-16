@@ -1,12 +1,31 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
 import { TbBrandAirtable } from "react-icons/tb";
 import { GiVacuumCleaner } from "react-icons/gi";
 import { BiChevronRight } from "react-icons/bi";
 import { Divider } from "primereact/divider";
+import { RiLogoutCircleRLine } from "react-icons/ri";
+import { confirmDialog, ConfirmDialog } from "primereact/confirmdialog";
 
-const Sidebar = () => {
-  const [sidebarFullWidth, setSidebarFullWidth] = useState(false);
+const Sidebar = ({ sidebarFullWidth, setSidebarFullWidth }) => {
+  const navigate = useNavigate();
+  const confirmSignOut = () => {
+    confirmDialog({
+      message: "Are you sure you want to sign out?",
+      header: "Confirmation",
+      icon: "pi pi-exclamation-triangle",
+      position: "bottom",
+      acceptClassName: "p-button-danger",
+      acceptLabel: "Sign Out",
+      rejectLabel: "Cancel",
+      accept: () => acceptSignout(),
+    });
+  };
+
+  const acceptSignout = () => {
+    navigate("/");
+  };
 
   return (
     <nav
@@ -26,6 +45,15 @@ const Sidebar = () => {
         onClick={() => setSidebarFullWidth(!sidebarFullWidth)}
       >
         <BiChevronRight className="text-black"></BiChevronRight>
+      </button>
+
+      <button
+        onClick={confirmSignOut}
+        type="button"
+        className="btn-icon absolute bottom-10 left-[50%] -translate-x-[50%] flex items-center"
+      >
+        <RiLogoutCircleRLine className="text-white text-2xl"></RiLogoutCircleRLine>
+        {sidebarFullWidth && <span className="text-white ml-3">Logout</span>}
       </button>
 
       <Divider type="dashed"></Divider>
@@ -68,6 +96,8 @@ const Sidebar = () => {
           {sidebarFullWidth && <span className="nav-label">Housekeeping</span>}
         </li>
       </ul>
+
+      <ConfirmDialog />
     </nav>
   );
 };
