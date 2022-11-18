@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
 import { TbBrandAirtable } from "react-icons/tb";
 import { GiVacuumCleaner } from "react-icons/gi";
-import { BiChevronRight } from "react-icons/bi";
+import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 import { Divider } from "primereact/divider";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { confirmDialog, ConfirmDialog } from "primereact/confirmdialog";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = ({ sidebarFullWidth, setSidebarFullWidth }) => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const Sidebar = ({ sidebarFullWidth, setSidebarFullWidth }) => {
   return (
     <nav
       className={`sidebar-nav ${
-        sidebarFullWidth ? "w-[12%]" : "w-[5%]"
+        sidebarFullWidth ? "lg:w-[12%] md:w-[25%]" : "lg:w-[5%] md:w-[10%]"
       } transition-all`}
     >
       <section className="nav-header">
@@ -44,7 +45,11 @@ const Sidebar = ({ sidebarFullWidth, setSidebarFullWidth }) => {
         className="nav-toggle-btn"
         onClick={() => setSidebarFullWidth(!sidebarFullWidth)}
       >
-        <BiChevronRight className="text-black"></BiChevronRight>
+        {sidebarFullWidth ? (
+          <BiChevronLeft className="text-black"></BiChevronLeft>
+        ) : (
+          <BiChevronRight className="text-black"></BiChevronRight>
+        )}
       </button>
 
       <button
@@ -59,8 +64,9 @@ const Sidebar = ({ sidebarFullWidth, setSidebarFullWidth }) => {
       <Divider type="dashed"></Divider>
 
       <ul className="list-group mt-10">
-        <li
-          className={`list-group-item active ${
+        <NavLink
+          to="dashboard"
+          className={`list-group-item ${
             sidebarFullWidth
               ? "justify-start max-w-[100%]"
               : "justify-center max-w-[100%]"
@@ -70,8 +76,9 @@ const Sidebar = ({ sidebarFullWidth, setSidebarFullWidth }) => {
             <AiOutlineHome></AiOutlineHome>
           </span>
           {sidebarFullWidth && <span className="nav-label">Dashboard</span>}
-        </li>
-        <li
+        </NavLink>
+        <NavLink
+          to="front-desk"
           className={`list-group-item ${
             sidebarFullWidth
               ? "justify-start max-w-[100%]"
@@ -82,7 +89,7 @@ const Sidebar = ({ sidebarFullWidth, setSidebarFullWidth }) => {
             <TbBrandAirtable></TbBrandAirtable>
           </span>
           {sidebarFullWidth && <span className="nav-label">Front Desk</span>}
-        </li>
+        </NavLink>
         <li
           className={`list-group-item ${
             sidebarFullWidth

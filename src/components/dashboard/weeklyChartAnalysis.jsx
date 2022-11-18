@@ -52,7 +52,7 @@ const WeeklyChartAnalysis = () => {
   }, []);
 
   return (
-    <div className="weekly-revenue-analysis card w-[60%]">
+    <div className="weekly-revenue-analysis card w-full sm:w-full md:w-full lg:w-[60%] mb-5 lg:mb-0">
       <div className="card-header flex items-center justify-between p-4">
         <h1 className="font-semibold">Weekly Revenue Report</h1>
 

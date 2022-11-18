@@ -69,6 +69,18 @@ body {
   #dashboard .card {
     @apply bg-white rounded-lg cursor-pointer drop-shadow-customShadow;
   }
+
+  .top-nav .list-group {
+    @apply flex items-center;
+  }
+
+  .top-nav .list-group .list-group-item {
+    @apply px-3 py-1 text-base flex items-center rounded-md cursor-pointer hover:bg-gray-100;
+  }
+
+  .top-nav .list-group .list-group-item.active {
+    @apply bg-gray-100;
+  }
 }
 
 #daterange .p-inputtext {
@@ -88,4 +100,10 @@ body {
   width: 100vw;
   height: 100vh;
   z-index: 2;
+}
+
+#frontDeskOverview .p-dropdown .p-dropdown-label.p-inputtext {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-size: 14px;
 }

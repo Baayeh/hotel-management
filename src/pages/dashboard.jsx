@@ -1,7 +1,6 @@
-import { AiOutlinePlus } from "react-icons/ai";
 import { MdOutlineMeetingRoom } from "react-icons/md";
 import { FaRegTimesCircle } from "react-icons/fa";
-import { AiOutlineLogin } from "react-icons/ai";
+import { AiOutlineLogin, AiOutlinePlus } from "react-icons/ai";
 import { Divider } from "primereact/divider";
 import { WeeklyChartAnalysis, TileAnalysisCard } from "../components";
 
@@ -20,7 +19,7 @@ const Dashboard = () => {
         </button>
       </section>
 
-      <section className="mt-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+      <section className="mt-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         <div className="card ">
           <div className="card-body p-5">
             <div className="flex items-center justify-between">
@@ -131,7 +130,7 @@ const Dashboard = () => {
         </div>
       </section>
 
-      <section className="mt-5 flex items-start gap-x-5">
+      <section className="mt-5 flex flex-col sm:flex-col md:flex-col lg:flex-row items-start gap-x-5">
         <WeeklyChartAnalysis></WeeklyChartAnalysis>
         <TileAnalysisCard></TileAnalysisCard>
       </section>

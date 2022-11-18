@@ -5,7 +5,7 @@ import { AiOutlineKey, AiOutlineUserSwitch } from "react-icons/ai";
 
 const TileAnalysisCard = () => {
   return (
-    <div className="w-[40%]">
+    <div className="w-full md:w-full lg:w-[40%]">
       <div className="card mb-3">
         <div className="card-body flex items-center justify-between py-5 pl-4 pr-10">
           <section className="flex items-center">
