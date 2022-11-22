@@ -33,6 +33,62 @@ body {
   .form-control {
     @apply border-b border-gray-300 w-full p-2 text-sm focus:border-primaryColor focus:outline-none;
   }
+
+  .sidebar-nav {
+    @apply fixed left-3 top-3 bg-primaryColor rounded-xl shadow-lg text-white p-3 min-h-full z-20;
+  }
+
+  .sidebar-nav .list-group .list-group-item {
+    @apply flex items-center py-[14px] cursor-pointer hover:bg-primaryColor relative;
+  }
+
+  .sidebar-nav .list-group .list-group-item.active {
+    @apply after:content-[''] after:absolute after:-left-[13px] after:top-[50%] after:bg-white after:w-2 after:h-[60%] after:-translate-y-[50%];
+  }
+
+  .sidebar-nav .list-group .list-group-item svg {
+    @apply text-2xl;
+  }
+
+  .sidebar-nav .list-group .list-group-item .nav-label {
+    @apply ml-4 text-base;
+  }
+
+  .sidebar-nav .nav-toggle-btn {
+    @apply bg-white w-6 h-6 rounded-full absolute shadow-lg top-12 -right-[10px] flex items-center justify-center;
+  }
+
+  .top-nav {
+    @apply bg-white rounded-lg py-4 px-5 flex items-center justify-between fixed top-3 mr-4 z-10 drop-shadow-customShadow;
+  }
+
+  .main .auth-section svg {
+    @apply text-xl;
+  }
+
+  #dashboard .card {
+    @apply bg-white rounded-lg cursor-pointer drop-shadow-customShadow;
+  }
+
+  .top-nav .list-group {
+    @apply flex items-center;
+  }
+
+  .top-nav .list-group .list-group-item {
+    @apply px-3 py-1 text-base flex items-center rounded-md cursor-pointer hover:bg-gray-100;
+  }
+
+  .top-nav .list-group .list-group-item.active {
+    @apply bg-gray-100;
+  }
+}
+
+#daterange .p-inputtext {
+  border: none;
+  padding: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  /* min-width: 200px; */
 }
 
 .login-screen::after {
@@ -44,4 +100,10 @@ body {
   width: 100vw;
   height: 100vh;
   z-index: 2;
+}
+
+#frontDeskOverview .p-dropdown .p-dropdown-label.p-inputtext {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-size: 14px;
 }
