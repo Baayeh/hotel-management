@@ -3,8 +3,8 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import "./index.css";
-import { Login, AppWrapper, Dashboard, FrontDesk } from "./pages";
-import { FrontDeskOverview, Availables } from "./components";
+import { Login, AppWrapper, Dashboard, FrontDesk, Booking } from "./pages";
+import { FrontDeskOverview, Availables, ClientDetails, Reservation, Confirmation, Payment } from "./components";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +37,28 @@ const router = createBrowserRouter([
               },
             ],
           },
+          {
+            path: "booking",
+            element: <Booking />,
+            children: [
+              {
+                index: true,
+                element: <ClientDetails />
+              },
+              {
+                path: "reservation",
+                element: <Reservation />
+              },
+              {
+                path: "payment",
+                element: <Payment />
+              },
+              {
+                path: "confirmation",
+                element: <Confirmation />
+              },
+            ],
+          }
         ],
       },
     ],
