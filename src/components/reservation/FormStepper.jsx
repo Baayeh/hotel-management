@@ -49,24 +49,38 @@ const FormStepper = () => {
         </>
       ) : (
         <>
-          {activeStep === 0 && <ClientDetails />}
-          {activeStep === 1 && <Reservation />}
-          {activeStep === 2 && <Payment />}
-          {activeStep === 3 && <Confirmation />}
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Button
-              color="inherit"
-              disabled={activeStep === 0}
-              onClick={handleBack}
-              sx={{ mr: 1 }}
-            >
-              Back
-            </Button>
-            <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleNext}>
-              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-            </Button>
-          </Box>
+          {activeStep === 0 && (
+            <ClientDetails
+              handleNext={handleNext}
+              handleBack={handleBack}
+              activeStep={activeStep}
+              steps={steps}
+            />
+          )}
+          {activeStep === 1 && (
+            <Reservation
+              handleNext={handleNext}
+              handleBack={handleBack}
+              activeStep={activeStep}
+              steps={steps}
+            />
+          )}
+          {activeStep === 2 && (
+            <Payment
+              handleNext={handleNext}
+              handleBack={handleBack}
+              activeStep={activeStep}
+              steps={steps}
+            />
+          )}
+          {activeStep === 3 && (
+            <Confirmation
+              handleNext={handleNext}
+              handleBack={handleBack}
+              activeStep={activeStep}
+              steps={steps}
+            />
+          )}
         </>
       )}
     </Box>
