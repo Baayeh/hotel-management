@@ -1,10 +1,10 @@
 import React from 'react'
-import { Outlet } from "react-router-dom"
+import { Forms } from "../components"
 
 const Booking = () => {
   return (
     <section className="booking mt-[7rem]">
-      <Outlet />
+      <Forms />
     </section>
   )
 }

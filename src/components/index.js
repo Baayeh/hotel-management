@@ -9,3 +9,4 @@ export { default as ClientDetails } from './reservation/ClientDetails';
 export { default as Reservation } from './reservation/Reservation';
 export { default as Payment } from './reservation/Payment';
 export { default as Confirmation } from './reservation/Confirmation';
+export { default as Forms } from './reservation/FormStepper';

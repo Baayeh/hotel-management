@@ -40,24 +40,6 @@ const router = createBrowserRouter([
           {
             path: "booking",
             element: <Booking />,
-            children: [
-              {
-                index: true,
-                element: <ClientDetails />
-              },
-              {
-                path: "reservation",
-                element: <Reservation />
-              },
-              {
-                path: "payment",
-                element: <Payment />
-              },
-              {
-                path: "confirmation",
-                element: <Confirmation />
-              },
-            ],
           }
         ],
       },
