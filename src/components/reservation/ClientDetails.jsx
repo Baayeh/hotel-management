@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useFormik } from "formik";
+import { useFormik } from 'formik';
 import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
-const ClientDetails = () => {
+const ClientDetails = ({ activeStep, steps, handleNext, handleBack }) => {
   const formik = useFormik({
     initialValues: {
       fname: '',
       lname: '',
       email: '',
-      pnumber: ''
-    }
+      pnumber: '',
+    },
+    onSubmit: (values) => {
+      console.log(values);
+      // handleNext();
+    },
   });
 
-  console.log('Form Values', formik.values);
+  // console.log('Form Values', formik.values);
 
   const [isError, setIsError] = useState(false);
   const [errMsg, setErrMsg] = useState('');
@@ -29,8 +35,10 @@ const ClientDetails = () => {
 
   return (
     <section className="client-details px-2 mt-10">
-      <h3 className="font-bold text-center uppercase text-xl">Enter client details</h3>
-      <form className="my-4">
+      <h3 className="font-bold text-center uppercase text-xl">
+        Enter client details
+      </h3>
+      <form className="my-4" onSubmit={formik.handleSubmit}>
         <div className="client-name flex gap-4 w-[45rem] mx-auto justify-center">
           <TextField
             id="fname"
@@ -85,6 +93,21 @@ const ClientDetails = () => {
             onChange={formik.handleChange}
           />
         </div>
+
+        <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+            <Button
+              color="inherit"
+              disabled={activeStep === 0}
+              onClick={handleBack}
+              sx={{ mr: 1 }}
+            >
+              Back
+            </Button>
+            <Box sx={{ flex: '1 1 auto' }} />
+            <Button type="submit">
+              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+            </Button>
+          </Box>
       </form>
     </section>
   );
