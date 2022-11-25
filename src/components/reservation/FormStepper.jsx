@@ -25,7 +25,7 @@ const FormStepper = () => {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '70%', margin: '0 auto' }}>
       <Stepper activeStep={activeStep}>
         {steps.map((label) => {
           const stepProps = {};

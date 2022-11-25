@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import "./index.css";
 import { Login, AppWrapper, Dashboard, FrontDesk, Booking } from "./pages";
-import { FrontDeskOverview, Availables, ClientDetails, Reservation, Confirmation, Payment } from "./components";
+import { FrontDeskOverview, Availables } from "./components";
 
 const router = createBrowserRouter([
   {
