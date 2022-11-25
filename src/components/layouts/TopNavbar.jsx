@@ -1,6 +1,6 @@
 import { RiBuilding2Fill, RiReservedLine } from 'react-icons/ri';
 import { BiBell, BiMessageSquareDetail } from 'react-icons/bi';
-import { BsCalendar2Check, BsSignpostSplit } from 'react-icons/bs';
+import { BsCalendar2Check, BsSignpostSplit, BsBookmarksFill } from 'react-icons/bs';
 import { FiUsers } from 'react-icons/fi';
 import { useLocation } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
@@ -38,7 +38,10 @@ const TopNavbar = ({ sidebarFullWidth }) => {
         </ul>
       );
     } else if (location.pathname.startsWith('/booking')) {
-      return <div className="font-bold md:text-lg lg:text-xl flex items-center">Book A Room</div>;
+      return <div className="font-bold md:text-lg lg:text-xl flex items-center">
+        <BsBookmarksFill className="text-4xl mr-2 text-primaryColor" />
+        <span>Book A Room</span>
+      </div>;
     }
   };
 
