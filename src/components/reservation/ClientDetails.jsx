@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -16,35 +17,18 @@ const onSubmit = (values) => {
   // handleNext();
 };
 
-const validate = (values) => {
-  let errors = {};
-
-  if (!values.fname) {
-    errors.fname = 'Required';
-  }
-
-  if (!values.lname) {
-    errors.lname = 'Required';
-  }
-
-  if (!values.email) {
-    errors.email = 'Required';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email format';
-  }
-
-  if (!values.pnumber) {
-    errors.pnumber = 'Required';
-  }
-
-  return errors;
-};
+const validationSchema = Yup.object({
+  fname: Yup.string().required('Required'),
+  lname: Yup.string().required('Required'),
+  email: Yup.string().email('Invalid Email Format').required('Required'),
+  pnumber: Yup.string().required('Required'),
+});
 
 const ClientDetails = ({ activeStep, steps, handleNext, handleBack }) => {
   const formik = useFormik({
     initialValues,
     onSubmit,
-    validate,
+    validationSchema,
   });
 
   const [isError, setIsError] = useState(false);
@@ -84,9 +68,7 @@ const ClientDetails = ({ activeStep, steps, handleNext, handleBack }) => {
             error={formik.touched.fname && formik.errors.fname && isError}
             helperText={formik.touched.fname && formik.errors.fname}
             // required
-            value={formik.values.fname}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+            {...formik.getFieldProps('fname')}
           />
           <TextField
             fullWidth
@@ -98,9 +80,7 @@ const ClientDetails = ({ activeStep, steps, handleNext, handleBack }) => {
             helperText={formik.touched.lname && formik.errors.lname}
             error={formik.touched.lname && formik.errors.lname && isError}
             // required
-            value={formik.values.lname}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+            {...formik.getFieldProps('lname')}
           />
         </div>
 
@@ -116,9 +96,7 @@ const ClientDetails = ({ activeStep, steps, handleNext, handleBack }) => {
             error={formik.touched.email && formik.errors.email && isError}
             helperText={formik.touched.email && formik.errors.email}
             // required
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+            {...formik.getFieldProps('email')}
           />
           <TextField
             fullWidth
@@ -130,9 +108,7 @@ const ClientDetails = ({ activeStep, steps, handleNext, handleBack }) => {
             helperText={formik.touched.pnumber && formik.errors.pnumber}
             error={formik.touched.pnumber && formik.errors.pnumber && isError}
             // required
-            value={formik.values.pnumber}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+            {...formik.getFieldProps('pnumber')}
           />
         </div>
 
