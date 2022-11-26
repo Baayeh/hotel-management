@@ -12,6 +12,9 @@ module.exports = {
       dropShadow: {
         customShadow: "0 1.5rem 4rem rgba(22, 28, 45, 0.1)",
       },
+      backgroundImage: {
+        'room-banner': "url('/src/assets/images/room-banner.jpg')"
+      },
     },
   },
   plugins: [],

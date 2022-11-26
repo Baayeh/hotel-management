@@ -81,6 +81,27 @@ body {
   .top-nav .list-group .list-group-item.active {
     @apply bg-gray-100;
   }
+
+  div.reservation-banner {
+    @apply bg-room-banner overflow-hidden w-full h-[22rem] bg-cover bg-no-repeat bg-center rounded-[1.2rem];
+  }
+
+  div.banner-overlay {
+    @apply w-full h-[inherit] text-white flex justify-center items-center;
+    background-color: rgba(0, 0, 0, 0.537);
+  }
+
+  div.room-card {
+    @apply w-[80%] mx-auto mt-20 flex justify-center items-center gap-10;
+  }
+
+  div.room-card-action {
+    @apply flex items-center justify-between mt-4
+  }
+
+  button.book-now {
+    @apply relative flex items-center gap-2 py-1 before:w-0 before:h-[0.1rem] before:absolute before:bottom-0 before:bg-gray-400 hover:before:w-full before:transition-all before:ease-out before:duration-300;
+  }
 }
 
 #daterange .p-inputtext {

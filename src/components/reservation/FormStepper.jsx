@@ -10,7 +10,7 @@ import { ClientDetails, Reservation, Payment, Confirmation } from '..';
 const steps = ['Client Details', 'Reservation', 'Payment', 'Confirmation'];
 
 const FormStepper = () => {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(1);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
