@@ -4,17 +4,14 @@ import * as Yup from 'yup';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import { useDispatch, useSelector } from "react-redux";
+import { addClient } from "../../redux/booking/client-details/clientSlice";
 
 const initialValues = {
   fname: '',
   lname: '',
   email: '',
   pnumber: '',
-};
-
-const onSubmit = (values) => {
-  console.log(values);
-  // handleNext();
 };
 
 const validationSchema = Yup.object({
@@ -26,6 +23,14 @@ const validationSchema = Yup.object({
 
 const ClientDetails = ({ activeStep, steps, handleNext, handleBack }) => {
   const [isError] = useState(false);
+  // const client = useSelector((state) => state.client);
+  const dispatch = useDispatch();
+
+  const onSubmit = (values) => {
+    // console.log(values);
+    dispatch(addClient(values));
+    handleNext();
+  };
 
   return (
     <section className="client-details px-2 mt-10">
