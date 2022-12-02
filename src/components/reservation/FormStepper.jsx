@@ -5,12 +5,18 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { ClientDetails, Reservation, Payment, Confirmation } from '..';
+import { ClientDetails, RoomDetails, Reservation, Payment, Confirmation } from '..';
 
-const steps = ['Client Details', 'Reservation', 'Payment', 'Confirmation'];
+const steps = [
+  'Client Details',
+  'Rooms',
+  'Reservation',
+  'Payment',
+  'Confirmation',
+];
 
 const FormStepper = () => {
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -58,7 +64,7 @@ const FormStepper = () => {
             />
           )}
           {activeStep === 1 && (
-            <Reservation
+            <RoomDetails
               handleNext={handleNext}
               handleBack={handleBack}
               activeStep={activeStep}
@@ -66,7 +72,7 @@ const FormStepper = () => {
             />
           )}
           {activeStep === 2 && (
-            <Payment
+            <Reservation
               handleNext={handleNext}
               handleBack={handleBack}
               activeStep={activeStep}
@@ -74,6 +80,14 @@ const FormStepper = () => {
             />
           )}
           {activeStep === 3 && (
+            <Payment
+              handleNext={handleNext}
+              handleBack={handleBack}
+              activeStep={activeStep}
+              steps={steps}
+            />
+          )}
+          {activeStep === 4 && (
             <Confirmation
               handleNext={handleNext}
               handleBack={handleBack}

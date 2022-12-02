@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import './index.css';
 import { Login, AppWrapper, Dashboard, FrontDesk, Booking } from './pages';
-import { FrontDeskOverview, Availables } from './components';
+import { FrontDeskOverview, Availables, RoomDetails } from './components';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +42,10 @@ const router = createBrowserRouter([
           {
             path: 'booking',
             element: <Booking />,
+          },
+          {
+            path: 'booking/reserve/:room',
+            element: <RoomDetails />,
           },
         ],
       },

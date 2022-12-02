@@ -6,6 +6,7 @@ import { BsPeople } from 'react-icons/bs';
 import { FaVectorSquare } from 'react-icons/fa';
 import { SlArrowRight } from 'react-icons/sl';
 import rooms from '../../RoomData';
+import { Link } from "react-router-dom";
 
 const Reservation = ({ activeStep, steps, handleNext, handleBack }) => {
   return (
@@ -47,14 +48,14 @@ const Reservation = ({ activeStep, steps, handleNext, handleBack }) => {
                 <p className="room-dec text-gray-600">{room.desc}</p>
                 <div className="room-card-action">
                   <div className="book-room">
-                    <button type="button" className="book-now">
+                    <Link to={`/booking/reserve/${room.id}`} type="button" className="book-now">
                       <span className="uppercase pt-[1px] tracking-widest font-bold text-sm">
                         Book Now
                       </span>
                       <span>
                         <SlArrowRight />
                       </span>
-                    </button>
+                    </Link>
                   </div>
                   <div className="room-price">
                     <span className="font-bold text-3xl text-primaryColorDark">
