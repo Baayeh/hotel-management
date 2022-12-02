@@ -1,7 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  room: {},
+  room: {
+    bed: '1 King Bed',
+    booked: true,
+    desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, necessitatibus.',
+    guests: 4,
+    id: 1,
+    img: '/src/assets/images/room-1.jpg',
+    name: 'Luxury Suite',
+    price: 90,
+    size: 30,
+  },
 };
 
 const roomSlice = createSlice({

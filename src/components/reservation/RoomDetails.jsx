@@ -133,7 +133,7 @@ const RoomDetails = ({ activeStep, steps, handleNext, handleBack }) => {
           Back
         </Button>
         <Box sx={{ flex: '1 1 auto' }} />
-        <Button onClick={handleNext}>
+        <Button onClick={handleNext} disabled={!roomData.booked}>
           {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
         </Button>
       </Box>
