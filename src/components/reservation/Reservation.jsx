@@ -11,11 +11,11 @@ import { Link } from "react-router-dom";
 const Reservation = ({ activeStep, steps, handleNext, handleBack }) => {
   return (
     <div className="my-5">
-      <div className="reservation-banner">
+      {/* <div className="reservation-banner">
         <div className="banner-overlay">
           <h2 className="text-5xl font-bold">Available Rooms</h2>
         </div>
-      </div>
+      </div> */}
       
 
       <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
