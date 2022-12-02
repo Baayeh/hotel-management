@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { IoBedOutline } from 'react-icons/io5';
 import { BsPeople } from 'react-icons/bs';
 import { FaVectorSquare } from 'react-icons/fa';
 import { SlArrowRight } from 'react-icons/sl';
-import rooms from '../../RoomData';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import rooms from '../../RoomData';
+import { addRoom, getRoomDetails } from '../../redux/booking/rooms/roomSlice';
 
 const MySwal = withReactContent(Swal);
 
 const RoomDetails = ({ activeStep, steps, handleNext, handleBack }) => {
+  const roomData = useSelector((state) => state.room);
+  const dispatch = useDispatch();
   const bookRoom = (room) => {
     MySwal.fire({
       title: room.name,
@@ -34,11 +38,19 @@ const RoomDetails = ({ activeStep, steps, handleNext, handleBack }) => {
           icon: 'success',
           confirmButtonColor: '#28a745',
           confirmButtonText: 'Next',
+        }).then((res) => {
+          if (res.isConfirmed) {
+            dispatch(addRoom({ ...room, booked: true }));
+            handleNext();
+          }
         });
-        handleNext();
       }
     });
   };
+
+  useEffect(() => {
+    dispatch(getRoomDetails());
+  }, [roomData]);
 
   return (
     <div className="my-5">
@@ -54,7 +66,14 @@ const RoomDetails = ({ activeStep, steps, handleNext, handleBack }) => {
               <img src={room.img} alt={room.name} />
             </div>
             <div className="room-details">
-              <h3 className="text-[2rem] font-bold">{room.name}</h3>
+              <div className="flex items-center gap-6">
+                <h3 className="text-[1.7rem] font-bold">{room.name}</h3>
+                {room.id === roomData.id && roomData.booked === true && (
+                  <span className="bg-green-500 px-4 text-white font-bold uppercase text-sm rounded-full py-1">
+                    Booked
+                  </span>
+                )}
+              </div>
               <div className="room-card-body">
                 <div className="text-gray-600 my-4 flex items-center gap-5">
                   <div className="bed-info flex items-center gap-1">
