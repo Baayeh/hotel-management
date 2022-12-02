@@ -5,7 +5,13 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { ClientDetails, RoomDetails, Reservation, Payment, Confirmation } from '..';
+import {
+  ClientDetails,
+  RoomDetails,
+  Reservation,
+  Payment,
+  Confirmation,
+} from '..';
 
 const steps = [
   'Client Details',
@@ -16,7 +22,7 @@ const steps = [
 ];
 
 const FormStepper = () => {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(1);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
