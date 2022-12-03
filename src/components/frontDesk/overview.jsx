@@ -9,6 +9,7 @@ import { Divider } from "primereact/divider";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
 import { DataGrid } from "@mui/x-data-grid";
+import { useNavigate } from "react-router-dom";
 
 const filterCategories = [];
 
@@ -129,6 +130,11 @@ const rows = [
 const FrontDeskOverview = () => {
   const [search, setSearch] = useState("");
   const [filterSearch, setFilterSearch] = useState("");
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    navigate('/booking');
+  };
 
   return (
     <section id="frontDeskOverview" className="bg-white rounded-lg p-5">
@@ -139,6 +145,7 @@ const FrontDeskOverview = () => {
           <button
             type="button"
             className="bg-primaryColor hover:bg-primaryColorDark text-white flex items-center px-5 py-3 rounded-md text-sm mr-3"
+            onClick={handleNavigation}
           >
             <AiOutlinePlus className="mr-2"></AiOutlinePlus>
             New Reservation

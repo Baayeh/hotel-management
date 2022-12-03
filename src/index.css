@@ -102,6 +102,10 @@ body {
   .book-now {
     @apply relative flex items-center gap-2 py-1 before:w-0 before:h-[0.1rem] before:absolute before:bottom-0 before:bg-gray-400 hover:before:w-full before:transition-all before:ease-out before:duration-300;
   }
+
+  div.amenity-card {
+    @apply flex items-center gap-4 border border-gray-300 p-6 rounded-[15px] hover:shadow-xl hover:border-slate-200 hover:-translate-y-[8px] w-[13rem] transition ease-out duration-300 
+  }
 }
 
 #daterange .p-inputtext {
