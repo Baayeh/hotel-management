@@ -1,22 +1,22 @@
-import { RiBuilding2Fill, RiReservedLine } from "react-icons/ri";
-import { BiBell, BiMessageSquareDetail } from "react-icons/bi";
-import { BsCalendar2Check, BsSignpostSplit } from "react-icons/bs";
-import { FiUsers } from "react-icons/fi";
-import { useLocation } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { RiBuilding2Fill, RiReservedLine } from 'react-icons/ri';
+import { BiBell, BiMessageSquareDetail } from 'react-icons/bi';
+import { BsCalendar2Check, BsSignpostSplit, BsBookmarksFill } from 'react-icons/bs';
+import { FiUsers } from 'react-icons/fi';
+import { useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const TopNavbar = ({ sidebarFullWidth }) => {
   const location = useLocation();
 
   const updateNavbarTitle = () => {
-    if (location.pathname.startsWith("/dashboard")) {
+    if (location.pathname.startsWith('/dashboard')) {
       return (
         <div className="font-bold md:text-lg lg:text-xl flex items-center">
           <RiBuilding2Fill className="text-4xl mr-2 text-primaryColor"></RiBuilding2Fill>
           Welcome to Hotel Management System
         </div>
       );
-    } else if (location.pathname.startsWith("/front-desk")) {
+    } else if (location.pathname.startsWith('/front-desk')) {
       return (
         <ul className="list-group">
           <NavLink to="front-desk" className="list-group-item" end>
@@ -37,13 +37,18 @@ const TopNavbar = ({ sidebarFullWidth }) => {
           </NavLink>
         </ul>
       );
+    } else if (location.pathname.startsWith('/booking')) {
+      return <div className="font-bold md:text-lg lg:text-xl flex items-center">
+        <BsBookmarksFill className="text-4xl mr-2 text-primaryColor" />
+        <span>Book A Room</span>
+      </div>;
     }
   };
 
   return (
     <nav
       className={`top-nav ${
-        sidebarFullWidth ? "lg:w-[86%] md:w-[70%]" : "lg:w-[92%] md:w-[84%]"
+        sidebarFullWidth ? 'lg:w-[86%] md:w-[70%]' : 'lg:w-[92%] md:w-[84%]'
       }`}
     >
       {updateNavbarTitle()}

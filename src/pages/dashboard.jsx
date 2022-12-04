@@ -3,8 +3,15 @@ import { FaRegTimesCircle } from "react-icons/fa";
 import { AiOutlineLogin, AiOutlinePlus } from "react-icons/ai";
 import { Divider } from "primereact/divider";
 import { WeeklyChartAnalysis, TileAnalysisCard } from "../components";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    navigate('/booking');
+  };
+
   return (
     <section id="dashboard" className="py-8">
       <section className="dashboard-header flex items-center justify-between">
@@ -12,7 +19,7 @@ const Dashboard = () => {
 
         <button
           type="button"
-          className="bg-primaryColor hover:bg-primaryColorDark text-white flex items-center px-5 py-3 rounded-md text-sm"
+          className="bg-primaryColor hover:bg-primaryColorDark text-white flex items-center px-5 py-3 rounded-md text-sm" onClick={handleNavigation}
         >
           <AiOutlinePlus className="mr-2"></AiOutlinePlus>
           New Reservation

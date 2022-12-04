@@ -1,14 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App";
-import "./index.css";
-import { Login, AppWrapper, Dashboard, FrontDesk } from "./pages";
-import { FrontDeskOverview, Availables } from "./components";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import App from './App';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import './index.css';
+import { Login, AppWrapper, Dashboard, FrontDesk, Booking } from './pages';
+import { FrontDeskOverview, Availables, RoomDetails } from './components';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App></App>,
     children: [
       {
@@ -16,15 +18,15 @@ const router = createBrowserRouter([
         element: <Login></Login>,
       },
       {
-        path: "",
+        path: '',
         element: <AppWrapper></AppWrapper>,
         children: [
           {
-            path: "dashboard",
+            path: 'dashboard',
             element: <Dashboard></Dashboard>,
           },
           {
-            path: "front-desk",
+            path: 'front-desk',
             element: <FrontDesk></FrontDesk>,
             children: [
               {
@@ -32,10 +34,18 @@ const router = createBrowserRouter([
                 element: <FrontDeskOverview></FrontDeskOverview>,
               },
               {
-                path: "availables",
+                path: 'availables',
                 element: <Availables></Availables>,
               },
             ],
+          },
+          {
+            path: 'booking',
+            element: <Booking />,
+          },
+          {
+            path: 'booking/reserve/:room',
+            element: <RoomDetails />,
           },
         ],
       },
@@ -43,8 +53,10 @@ const router = createBrowserRouter([
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <Provider store={store}>
+      <RouterProvider router={router}></RouterProvider>
+    </Provider>
   </React.StrictMode>
 );
