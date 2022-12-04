@@ -22,7 +22,7 @@ const steps = [
 ];
 
 const FormStepper = () => {
-  const [activeStep, setActiveStep] = useState(3);
+  const [activeStep, setActiveStep] = useState(4);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -49,60 +49,48 @@ const FormStepper = () => {
           );
         })}
       </Stepper>
-      {activeStep === steps.length ? (
-        <>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
-          </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleReset}>Reset</Button>
-          </Box>
-        </>
-      ) : (
-        <>
-          {activeStep === 0 && (
-            <ClientDetails
-              handleNext={handleNext}
-              handleBack={handleBack}
-              activeStep={activeStep}
-              steps={steps}
-            />
-          )}
-          {activeStep === 1 && (
-            <RoomDetails
-              handleNext={handleNext}
-              handleBack={handleBack}
-              activeStep={activeStep}
-              steps={steps}
-            />
-          )}
-          {activeStep === 2 && (
-            <Reservation
-              handleNext={handleNext}
-              handleBack={handleBack}
-              activeStep={activeStep}
-              steps={steps}
-            />
-          )}
-          {activeStep === 3 && (
-            <Payment
-              handleNext={handleNext}
-              handleBack={handleBack}
-              activeStep={activeStep}
-              steps={steps}
-            />
-          )}
-          {activeStep === 4 && (
-            <Confirmation
-              handleNext={handleNext}
-              handleBack={handleBack}
-              activeStep={activeStep}
-              steps={steps}
-            />
-          )}
-        </>
-      )}
+      <>
+        {activeStep === 0 && (
+          <ClientDetails
+            handleNext={handleNext}
+            handleBack={handleBack}
+            activeStep={activeStep}
+            steps={steps}
+          />
+        )}
+        {activeStep === 1 && (
+          <RoomDetails
+            handleNext={handleNext}
+            handleBack={handleBack}
+            activeStep={activeStep}
+            steps={steps}
+          />
+        )}
+        {activeStep === 2 && (
+          <Reservation
+            handleNext={handleNext}
+            handleBack={handleBack}
+            activeStep={activeStep}
+            steps={steps}
+          />
+        )}
+        {activeStep === 3 && (
+          <Payment
+            handleNext={handleNext}
+            handleBack={handleBack}
+            activeStep={activeStep}
+            steps={steps}
+          />
+        )}
+        {activeStep === 4 && (
+          <Confirmation
+            handleNext={handleNext}
+            handleBack={handleBack}
+            activeStep={activeStep}
+            steps={steps}
+          />
+        )}
+      </>
     </Box>
   );
 };
