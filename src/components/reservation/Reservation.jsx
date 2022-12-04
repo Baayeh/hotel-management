@@ -106,7 +106,7 @@ const Reservation = ({ activeStep, steps, handleNext, handleBack }) => {
   const onSubmit = (values) => {
     const newValues = { ...values, roomService };
     console.log(newValues);
-    // handleNext();
+    handleNext();
   };
 
   useEffect(() => {
