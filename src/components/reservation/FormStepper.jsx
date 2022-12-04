@@ -22,7 +22,7 @@ const steps = [
 ];
 
 const FormStepper = () => {
-  const [activeStep, setActiveStep] = useState(4);
+  const [activeStep, setActiveStep] = useState(2);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);

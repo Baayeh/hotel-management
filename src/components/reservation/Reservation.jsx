@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -23,6 +25,16 @@ import { MdOutlineRoomService } from 'react-icons/md';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { getRoomDetails } from '../../redux/booking/rooms/roomSlice';
+
+const initialValues = {
+  checkIn: null,
+  checkOut: null,
+};
+
+const validationSchema = Yup.object({
+  checkIn: Yup.date().nullable().required('Required'),
+  checkOut: Yup.date().nullable().required('Required'),
+});
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -71,22 +83,14 @@ const getStyles = (name, roomService, theme) => {
 
 const Reservation = ({ activeStep, steps, handleNext, handleBack }) => {
   const [value, setValue] = useState(0);
-  const [checkIn, setCheckIn] = useState(dayjs('2022-12-25T21:11:54'));
-  const [checkOut, setCheckOut] = useState(dayjs('2023-01-31T21:11:54'));
   const theme = useTheme();
   const [roomService, setRoomService] = useState([]);
   const roomData = useSelector((state) => state.room);
+  const [isError] = useState(false);
   const dispatch = useDispatch();
 
   const handleChange = (_event, newValue) => {
     setValue(newValue);
-  };
-
-  const handleCheckIn = (newValue) => {
-    setCheckIn(newValue);
-  };
-  const handleCheckOut = (newValue) => {
-    setCheckOut(newValue);
   };
 
   const handleMultipleSelect = (e) => {
@@ -97,6 +101,12 @@ const Reservation = ({ activeStep, steps, handleNext, handleBack }) => {
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value
     );
+  };
+
+  const onSubmit = (values) => {
+    const newValues = { ...values, roomService };
+    console.log(newValues);
+    // handleNext();
   };
 
   useEffect(() => {
@@ -206,84 +216,156 @@ const Reservation = ({ activeStep, steps, handleNext, handleBack }) => {
                 </Tabs>
               </Box>
               <TabPanel value={value} index={0}>
-                <form className="flex flex-col gap-6">
-                  <div>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                      <DesktopDatePicker
-                        label="Check In"
-                        inputFormat="DD/MM/YYYY"
-                        value={checkIn}
-                        onChange={handleCheckIn}
-                        renderInput={(params) => (
-                          <TextField name="check-in" {...params} />
-                        )}
-                      />
-                    </LocalizationProvider>
-                  </div>
-                  <div>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                      <DesktopDatePicker
-                        label="Check Out"
-                        inputFormat="DD/MM/YYYY"
-                        value={checkOut}
-                        onChange={handleCheckOut}
-                        renderInput={(params) => (
-                          <TextField name="check-out" {...params} />
-                        )}
-                      />
-                    </LocalizationProvider>
-                  </div>
+                <div>
+                  <Formik
+                    initialValues={initialValues}
+                    validationSchema={validationSchema}
+                    onSubmit={onSubmit}
+                  >
+                    {({ isValid, values, setFieldValue }) => (
+                      <Form className="flex flex-col gap-6">
+                        <div>
+                          <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DesktopDatePicker
+                              label="Check In"
+                              inputFormat="DD/MM/YYYY"
+                              value={values.checkIn}
+                              onChange={(value) =>
+                                setFieldValue('checkIn', value)
+                              }
+                              renderInput={(params) => (
+                                <Field name="checkIn">
+                                  {({ field, meta }) => (
+                                    <TextField
+                                      required
+                                      {...params}
+                                      {...field}
+                                      error={
+                                        meta.touched && meta.error
+                                          ? !isError
+                                          : isError
+                                      }
+                                      helperText={meta.touched && meta.error}
+                                    />
+                                  )}
+                                </Field>
+                              )}
+                            />
+                          </LocalizationProvider>
+                        </div>
+                        <div>
+                          <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DesktopDatePicker
+                              label="Check Out"
+                              inputFormat="DD/MM/YYYY"
+                              value={values.checkOut}
+                              onChange={(value) =>
+                                setFieldValue('checkOut', value)
+                              }
+                              renderInput={(params) => (
+                                <Field name="checkOut">
+                                  {({ field, meta }) => (
+                                    <TextField
+                                      required
+                                      {...params}
+                                      {...field}
+                                      error={
+                                        meta.touched && meta.error
+                                          ? !isError
+                                          : isError
+                                      }
+                                      helperText={meta.touched && meta.error}
+                                    />
+                                  )}
+                                </Field>
+                              )}
+                            />
+                          </LocalizationProvider>
+                        </div>
 
-                  <div>
-                    <FormControl sx={{ width: 250 }}>
-                      <InputLabel id="demo-multiple-chip-label">
-                        Service
-                      </InputLabel>
-                      <Select
-                        labelId="demo-multiple-chip-label"
-                        id="demo-multiple-chip"
-                        multiple
-                        value={roomService}
-                        onChange={handleMultipleSelect}
-                        input={
-                          <OutlinedInput
-                            id="select-multiple-chip"
-                            label="Chip"
-                          />
-                        }
-                        renderValue={(selected) => (
+                        <div>
+                          <FormControl sx={{ width: 250 }}>
+                            <InputLabel id="demo-multiple-chip-label">
+                              Service
+                            </InputLabel>
+                            <Select
+                              labelId="demo-multiple-chip-label"
+                              id="demo-multiple-chip"
+                              multiple
+                              value={roomService}
+                              onChange={handleMultipleSelect}
+                              input={
+                                <OutlinedInput
+                                  id="select-multiple-chip"
+                                  label="Chip"
+                                />
+                              }
+                              renderValue={(selected) => (
+                                <Box
+                                  sx={{
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                    gap: 0.5,
+                                  }}
+                                >
+                                  {selected.map((value) => (
+                                    <Chip key={value} label={value} />
+                                  ))}
+                                </Box>
+                              )}
+                              MenuProps={MenuProps}
+                            >
+                              {names.map((name) => (
+                                <MenuItem
+                                  key={name}
+                                  value={name}
+                                  style={getStyles(name, roomService, theme)}
+                                >
+                                  {name}
+                                </MenuItem>
+                              ))}
+                            </Select>
+                          </FormControl>
+                        </div>
+
+                        <div>
+                          <button
+                            type="submit"
+                            className="border bg-slate-800 text-white w-full border-slate-800 p-3 rounded uppercase hover:bg-transparent hover:text-slate-800 transition-all ease-out duration-700 disabled:bg-gray-400 disabled:text-gray-500 disabled:border-0"
+                            disabled={!isValid}
+                          >
+                            Check In Now
+                          </button>
+                        </div>
+
+                        <div>
                           <Box
-                            sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}
+                            sx={{
+                              display: 'flex',
+                              flexDirection: 'row',
+                              pt: 2,
+                            }}
                           >
-                            {selected.map((value) => (
-                              <Chip key={value} label={value} />
-                            ))}
+                            <Button
+                              color="inherit"
+                              disabled={activeStep === 0}
+                              onClick={handleBack}
+                              sx={{ mr: 1 }}
+                            >
+                              Back
+                            </Button>
+                            <Box sx={{ flex: '1 1 auto' }} />
+                            <Button onClick={handleNext} disabled={!isValid}>
+                              {activeStep === steps.length - 1
+                                ? 'Finish'
+                                : 'Next'}
+                            </Button>
                           </Box>
-                        )}
-                        MenuProps={MenuProps}
-                      >
-                        {names.map((name) => (
-                          <MenuItem
-                            key={name}
-                            value={name}
-                            style={getStyles(name, roomService, theme)}
-                          >
-                            {name}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </div>
-
-                  <div>
-                    <button
-                      type="submit"
-                      className="border bg-slate-800 text-white w-full border-slate-800 p-3 rounded uppercase hover:bg-transparent hover:text-slate-800 transition-all ease-out duration-700"
-                    >
-                      Check In Now
-                    </button>
-                  </div>
-                </form>
+                        </div>
+                      </Form>
+                    )}
+                  </Formik>
+                </div>
               </TabPanel>
               <TabPanel value={value} index={1}>
                 Item Two
@@ -292,21 +374,6 @@ const Reservation = ({ activeStep, steps, handleNext, handleBack }) => {
           </div>
         </div>
       )}
-
-      <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-        <Button
-          color="inherit"
-          disabled={activeStep === 0}
-          onClick={handleBack}
-          sx={{ mr: 1 }}
-        >
-          Back
-        </Button>
-        <Box sx={{ flex: '1 1 auto' }} />
-        <Button onClick={handleNext}>
-          {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-        </Button>
-      </Box>
     </div>
   );
 };
