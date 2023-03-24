@@ -6,7 +6,7 @@ const rooms = [
     bed: '1 King Bed',
     guests: 4,
     size: 30,
-    desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, necessitatibus.',
+    desc: 'c',
     price: 90,
   },
   {

@@ -13,7 +13,7 @@ module.exports = {
         customShadow: "0 1.5rem 4rem rgba(22, 28, 45, 0.1)",
       },
       backgroundImage: {
-        'room-banner': "url('/src/assets/images/room-banner.jpg')"
+        'room-banner': "url('https://res.cloudinary.com/dskl0qde4/image/upload/v1678996996/room-banner_pk9xu4.jpg')"
       },
     },
   },
