@@ -101,7 +101,7 @@ body {
     @apply flex items-center justify-between mt-4;
   }
 
-  .book-now {
+  .more-details {
     @apply relative flex items-center gap-2 py-1 before:w-0 before:h-[0.1rem] before:absolute before:bottom-0 before:bg-gray-400 hover:before:w-full before:transition-all before:ease-out before:duration-300;
   }
 
